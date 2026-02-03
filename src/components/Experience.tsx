@@ -1,11 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
+// Import logos directly for reliable asset handling
+import dreamstudioLogo from "/logos/DreamStudio.png";
+import fisLogo from "/logos/fis-global.png";
+import cognizantLogo from "/logos/Cognizant.png";
+
 const Experience = () => {
   const experiences = [
     {
       company: "DreamStudio",
-      logo: "/logos/DreamStudio.png",
+      logo: dreamstudioLogo,
       position: "Full-Stack Developer (AI/ML Integration)",
       location: "Atlanta, United States",
       duration: "May 2025 - Present",
@@ -20,7 +25,7 @@ const Experience = () => {
     },
     {
       company: "FIS Global",
-      logo: "/logos/fis-global.png",
+      logo: fisLogo,
       position: "Software Engineer",
       location: "Bengaluru, India",
       duration: "Jun 2022 - Jul 2023",
@@ -35,7 +40,7 @@ const Experience = () => {
     },
     {
       company: "Cognizant",
-      logo: "/logos/Cognizant.png",
+      logo: cognizantLogo,
       position: "Programming Analyst",
       location: "Hyderabad, India",
       duration: "Nov 2021 - Jun 2022",
