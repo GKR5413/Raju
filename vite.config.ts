@@ -16,7 +16,7 @@ export default defineConfig(({ mode, command }) => {
         },
       },
     },
-    base: "/", // Use root path for custom domain (rajugottumukkala.com)
+    base: process.env.GITHUB_ACTIONS === "true" ? "/Raju/" : "/", // Use /Raju/ for GitHub Pages, / for custom domain
     plugins: [
       react(),
     ],
