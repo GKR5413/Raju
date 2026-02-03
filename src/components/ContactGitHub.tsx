@@ -110,20 +110,22 @@ const ContactGitHub = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-2 space-y-8"
+            className="space-y-6"
           >
             {/* Info Items */}
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <info.icon className="h-4 w-4 text-stone-400 dark:text-stone-500" />
+                  <div className="w-8 h-8 rounded-full bg-stone-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
+                    <info.icon className="h-4 w-4 text-stone-500 dark:text-stone-400" />
+                  </div>
                   {info.href ? (
                     <a
                       href={info.href}
@@ -139,7 +141,7 @@ const ContactGitHub = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex gap-2">
+            <div className="flex gap-3 pt-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
@@ -154,8 +156,8 @@ const ContactGitHub = () => {
             </div>
 
             {/* Availability */}
-            <div className="flex items-center gap-2 text-sm text-stone-500 dark:text-stone-500">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+            <div className="flex items-center gap-2 text-sm text-stone-500 dark:text-stone-500 pt-2">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
               <span>Available for opportunities</span>
             </div>
           </motion.div>
@@ -166,14 +168,13 @@ const ContactGitHub = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-3"
           >
-            <Card className="border-stone-200 dark:border-neutral-800 bg-stone-50 dark:bg-neutral-900">
-              <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="name" className="text-xs text-stone-500 dark:text-stone-500">Name</Label>
+            <Card className="border-stone-200 dark:border-neutral-800 bg-stone-50 dark:bg-neutral-900 shadow-sm">
+              <CardContent className="p-5 sm:p-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="name" className="text-xs font-medium text-stone-600 dark:text-stone-400">Name</Label>
                       <Input
                         id="name"
                         name="name"
@@ -181,11 +182,11 @@ const ContactGitHub = () => {
                         onChange={handleInputChange}
                         placeholder="Your name"
                         disabled={isSubmitting}
-                        className={`mt-1 bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 ${errors.name ? 'border-red-400' : ''}`}
+                        className={`bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 focus:border-stone-400 dark:focus:border-neutral-600 ${errors.name ? 'border-red-400' : ''}`}
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="email" className="text-xs text-stone-500 dark:text-stone-500">Email</Label>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email" className="text-xs font-medium text-stone-600 dark:text-stone-400">Email</Label>
                       <Input
                         id="email"
                         name="email"
@@ -194,13 +195,13 @@ const ContactGitHub = () => {
                         onChange={handleInputChange}
                         placeholder="your@email.com"
                         disabled={isSubmitting}
-                        className={`mt-1 bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 ${errors.email ? 'border-red-400' : ''}`}
+                        className={`bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 focus:border-stone-400 dark:focus:border-neutral-600 ${errors.email ? 'border-red-400' : ''}`}
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <Label htmlFor="subject" className="text-xs text-stone-500 dark:text-stone-500">Subject</Label>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="subject" className="text-xs font-medium text-stone-600 dark:text-stone-400">Subject</Label>
                     <Input
                       id="subject"
                       name="subject"
@@ -208,12 +209,12 @@ const ContactGitHub = () => {
                       onChange={handleInputChange}
                       placeholder="What's this about?"
                       disabled={isSubmitting}
-                      className={`mt-1 bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 ${errors.subject ? 'border-red-400' : ''}`}
+                      className={`bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 focus:border-stone-400 dark:focus:border-neutral-600 ${errors.subject ? 'border-red-400' : ''}`}
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="message" className="text-xs text-stone-500 dark:text-stone-500">Message</Label>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="message" className="text-xs font-medium text-stone-600 dark:text-stone-400">Message</Label>
                     <Textarea
                       id="message"
                       name="message"
@@ -222,16 +223,26 @@ const ContactGitHub = () => {
                       placeholder="Your message..."
                       rows={4}
                       disabled={isSubmitting}
-                      className={`mt-1 bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 resize-none ${errors.message ? 'border-red-400' : ''}`}
+                      className={`bg-white dark:bg-neutral-950 border-stone-200 dark:border-neutral-800 focus:border-stone-400 dark:focus:border-neutral-600 resize-none ${errors.message ? 'border-red-400' : ''}`}
                     />
                   </div>
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200"
+                    className="w-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></span>
+                        Sending...
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-2">
+                        <Send className="h-4 w-4" />
+                        Send Message
+                      </span>
+                    )}
                   </Button>
                 </form>
               </CardContent>

@@ -166,12 +166,6 @@ const Contact = () => {
       icon: Github,
       href: "https://github.com/GKR5413",
       description: "Code repositories"
-    },
-    {
-      name: "Portfolio",
-      icon: Globe,
-      href: "https://rajugottumukkala.com",
-      description: "Personal website"
     }
   ];
 
