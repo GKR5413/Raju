@@ -1,374 +1,157 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Play, Filter, Zap, Shield, Brain } from "lucide-react";
+import { Github, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
-
   const projects = [
     {
       id: 1,
-      title: "VelocIDE - AI-Based Code Editor",
-      category: "AI/ML",
-      description: "Built production-ready web IDE integrating Google Gemini 3 Pro, Claude 4.5 Sonnet, and Llama 3 models with autonomous file management where LLMs create, delete, and modify entire codebases with 5ms response.",
-      image: "/api/placeholder/400/250",
-      technologies: ["React", "TypeScript", "Monaco Editor", "Docker", "gRPC", "OAuth 2.0", "JWT", "Google Gemini 3 Pro", "Claude 4.5 Sonnet", "Llama 3"],
-      features: [
-        "Multi-model AI integration",
-        "Autonomous file management",
-        "Multi-tab interface",
-        "gRPC powered terminals"
+      title: "VelocIDE",
+      subtitle: "AI-Powered Code Editor",
+      description: "Production-ready web IDE integrating Google Gemini, Claude, and Llama models with autonomous file management. LLMs create, delete, and modify entire codebases with 5ms response time.",
+      technologies: ["React", "TypeScript", "Monaco Editor", "Docker", "gRPC", "OAuth 2.0"],
+      highlights: [
+        "Multi-model AI integration (Gemini, Claude, Llama)",
+        "6-service Docker microservices architecture",
+        "Sub-10ms response times across services",
+        "20+ concurrent users supported"
       ],
-      metrics: {
-        performance: "20+ users",
-        latency: "5ms",
-        accuracy: "Sub-10ms",
-        concurrent: "20+ users",
-        system: "6 services"
-      },
-      links: {
-        github: "https://github.com/GKR5413/AI-Code-Editor",
-        live: "#",
-        demo: "#"
-      },
-      status: "Production",
-      icon: Brain
+      github: "https://github.com/GKR5413/AI-Code-Editor",
     },
     {
       id: 2,
-      title: "Resume Builder - Sandbox Support for Gemini LLM",
-      category: "AI/ML",
-      description: "Developed containerized platform enabling Gemini 2.5 Pro to autonomously compile files in isolated Docker sandboxes, solving the limitation that LLMs cannot natively execute code or generate binary files.",
-      image: "/api/placeholder/400/250",
-      technologies: ["Docker", "Python", "Alpine Linux", "Google Gemini 2.5 Pro", "Bash", "Security"],
-      features: [
-        "Autonomous code execution",
-        "15-category command blacklisting",
-        "60-second timeouts",
-        "Iterative self-correction (15 cycles)"
+      title: "Resume Builder",
+      subtitle: "Sandbox Support for Gemini LLM",
+      description: "Containerized platform enabling Gemini 2.5 Pro to autonomously compile files in isolated Docker sandboxes, solving the limitation that LLMs cannot natively execute code.",
+      technologies: ["Docker", "Python", "Alpine Linux", "Gemini 2.5 Pro", "Bash"],
+      highlights: [
+        "Autonomous code execution in isolated containers",
+        "15-category command blacklisting for security",
+        "Iterative self-correction across 15 cycles",
+        "Non-root execution with environment detection"
       ],
-      metrics: {
-        performance: "15 cycles",
-        latency: "60s timeout",
-        accuracy: "Self-correct",
-        concurrent: "Isolated",
-        system: "Alpine Linux"
-      },
-      links: {
-        github: "https://github.com/GKR5413/resume-builder",
-        live: "#",
-        demo: "#"
-      },
-      status: "Production",
-      icon: Shield
+      github: "https://github.com/GKR5413/resume-builder",
     }
   ];
 
-  const categories = ["All", "AI/ML", "Fintech"];
-
-  const filteredProjects = activeFilter === "All" 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
-
   return (
-    <section id="projects" className="py-20 bg-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Enhanced Section Header */}
-        <div className="text-center mb-16">
-          <div className="group inline-block relative mb-6">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-x bg-300%">
-              Featured Projects
-            </h2>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            A showcase of innovative solutions I've built, from high-performance fintech platforms 
-            to AI-powered applications that solve real-world problems.
+    <section id="projects" className="py-24 bg-white dark:bg-neutral-950">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-sm font-medium tracking-widest uppercase text-stone-400 dark:text-stone-500 mb-4">
+            Projects
+          </h2>
+          <p className="text-2xl sm:text-3xl text-stone-900 dark:text-stone-100">
+            Featured work
           </p>
-        </div>
+        </motion.div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-            <Filter className="h-4 w-4" />
-            <span>Filter by category:</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={activeFilter === category ? "default" : "outline"}
-                size="sm"
-                onClick={() => setActiveFilter(category)}
-                className={`rounded-full transition-all duration-300 hover:scale-105 ${
-                  activeFilter === category 
-                    ? "shadow-lg shadow-primary/25 bg-gradient-to-r from-primary to-accent" 
-                    : "hover:border-primary/50 hover:shadow-md"
-                }`}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {filteredProjects.map((project) => (
-                          <Card key={project.id} className="group hover-lift shadow-lg overflow-hidden border-2 border-transparent hover:border-primary/20 transition-all duration-300">
-                {/* Project Header with Enhanced Design */}
-                <div className="relative h-48 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 overflow-hidden">
-                  {/* Animated Background Pattern */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5"></div>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-                  
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl flex items-center justify-center mb-3 shadow-2xl mx-auto border border-primary/20 backdrop-blur-sm">
-                        {(() => {
-                          const IconComponent = project.icon;
-                          return <IconComponent className="h-8 w-8 text-primary" />;
-                        })()}
+        {/* Projects */}
+        <div className="space-y-12">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="border-stone-200 dark:border-neutral-800 bg-stone-50 dark:bg-neutral-900 overflow-hidden">
+                <CardContent className="p-6 sm:p-8">
+                  {/* Header */}
+                  <div className="mb-6">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <h3 className="text-xl font-medium text-stone-900 dark:text-stone-100">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-stone-500 dark:text-stone-500">
+                          {project.subtitle}
+                        </p>
                       </div>
-                      <p className="text-base text-foreground font-semibold bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full">{project.title}</p>
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-stone-400 hover:text-stone-700 dark:text-stone-500 dark:hover:text-stone-300 transition-colors"
+                      >
+                        <Github className="h-5 w-5" />
+                      </a>
                     </div>
                   </div>
-                  
-                  {/* Enhanced Status Badge */}
-                  <div className="absolute top-4 right-4">
-                    <Badge 
-                      variant={project.status === "Production" ? "default" : "secondary"}
-                      className="shadow-lg bg-primary/90 text-white border-0 px-3 py-1"
-                    >
-                      <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                      {project.status}
-                    </Badge>
-                  </div>
-                  
-                  {/* Achievement Highlights */}
-                  <div className="absolute bottom-4 left-4 flex gap-2">
-                    <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200 text-xs">
-                      🚀 {project.metrics.performance}
-                    </Badge>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-200 text-xs">
-                      ⚡ {project.metrics.latency}
-                    </Badge>
-                    <Badge variant="secondary" className="bg-purple-100 text-purple-800 border-purple-200 text-xs">
-                      🎯 {project.metrics.accuracy}
-                    </Badge>
-                  </div>
-                </div>
 
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
-                        {project.category}
-                      </Badge>
-                      <Badge variant="outline" className="bg-green-100 text-green-700 border-green-200">
-                        🏆 Production Ready
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-foreground leading-relaxed text-base">
-                  {project.description}
-                </p>
-              </CardHeader>
+                  {/* Description */}
+                  <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed mb-6">
+                    {project.description}
+                  </p>
 
-              <CardContent className="space-y-6">
-                {/* Key Features */}
-                <div>
-                  <h4 className="font-semibold text-foreground mb-3">Key Features</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {project.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="text-primary">•</span>
-                        <span>{feature}</span>
-                      </div>
-                    ))}
+                  {/* Highlights */}
+                  <div className="mb-6">
+                    <ul className="space-y-2">
+                      {project.highlights.map((highlight, hIndex) => (
+                        <li key={hIndex} className="text-sm text-stone-600 dark:text-stone-400 flex items-start gap-2">
+                          <span className="text-stone-400 dark:text-stone-600 mt-1">·</span>
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
 
-                {/* Enhanced Performance Metrics */}
-                <div className="bg-surface-variant rounded-xl p-6 border border-border">
-                  <h4 className="font-bold text-foreground mb-4 flex items-center gap-2 text-lg">
-                    <Zap className="h-5 w-5 text-primary" />
-                    Performance Metrics
-                  </h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-xl font-bold text-primary mb-1">
-                        {project.metrics.performance}
-                      </div>
-                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
-                        RPS
-                      </div>
-                    </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-xl font-bold text-primary mb-1">
-                        {project.metrics.latency}
-                      </div>
-                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
-                        P95 Latency
-                      </div>
-                    </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-xl font-bold text-primary mb-1">
-                        {project.metrics.accuracy}
-                      </div>
-                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
-                        Error Rate
-                      </div>
-                    </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-xl font-bold text-primary mb-1">
-                        {project.metrics.concurrent}
-                      </div>
-                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
-                        Concurrent
-                      </div>
-                    </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-xl font-bold text-primary mb-1">
-                        {project.metrics.system}
-                      </div>
-                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
-                        System Specs
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Technical Achievements */}
-                {project.title.includes("VelocIDE") && (
-                  <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6 mb-6 border border-primary/20">
-                    <h5 className="font-bold text-foreground mb-4 flex items-center gap-3 text-lg">
-                      <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                        <Brain className="h-5 w-5 text-primary" />
-                      </div>
-                      🚀 Technical Achievements
-                    </h5>
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Prepared 6-service Docker microservices architecture</span>
-                          <span className="text-muted-foreground"> achieving sub-10ms response times (Auth: 6ms, AI Agent: 5ms, Compiler: 13ms) with 1ms file reads and 8ms writes for real-time workspace synchronization</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Built production-ready web IDE with autonomous file management</span>
-                          <span className="text-muted-foreground"> where LLMs create, delete, and modify entire codebases with 5ms response</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Architected OAuth 2.0/JWT authentication</span>
-                          <span className="text-muted-foreground"> supporting 20+ concurrent users with 6ms response times, 50MB memory footprint per service, and automated cleanup with rate limiting</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {project.title.includes("Resume Builder") && (
-                  <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6 mb-6 border border-primary/20">
-                    <h5 className="font-bold text-foreground mb-4 flex items-center gap-3 text-lg">
-                      <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                        <Brain className="h-5 w-5 text-primary" />
-                      </div>
-                      🚀 Technical Achievements
-                    </h5>
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Implemented secure autonomous execution</span>
-                          <span className="text-muted-foreground"> with 15-category command blacklisting (fork bombs, privilege escalation, network exploits), 60-second timeouts, and iterative self-correction across up to 15 cycles</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Built Docker isolation layer using Alpine Linux</span>
-                          <span className="text-muted-foreground"> with non-root execution, environment detection, and bidirectional stdout/stderr streaming enabling Gemini to autonomously debug compilation failures without human intervention</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Solved LLM limitation for code execution</span>
-                          <span className="text-muted-foreground"> enabling Gemini 2.5 Pro to autonomously compile files and generate binary files in isolated sandboxes</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Technologies */}
-                <div>
-                  <h4 className="font-semibold text-foreground mb-3">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-2.5 py-1 text-xs bg-white dark:bg-neutral-950 text-stone-600 dark:text-stone-400 rounded border border-stone-200 dark:border-neutral-800"
+                      >
                         {tech}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
-                </div>
 
-                {/* Enhanced Action Buttons */}
-                <div className="flex gap-3 pt-6 border-t border-border">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full gap-2 hover:bg-primary hover:text-white transition-all duration-200 border-primary/30"
-                    onClick={() => window.open(project.links.github, '_blank')}
+                  {/* Action */}
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                   >
-                    <Github className="h-4 w-4" />
-                    View Code
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                    View on GitHub
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
 
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <Card className="p-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0">
-            <h3 className="text-2xl font-bold mb-4">
-              Interested in My Work?
-            </h3>
-            <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-              I'm always working on new projects and exploring innovative technologies.
-              Let's connect and discuss how we can build something amazing together.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="gap-2 bg-white text-blue-600 hover:bg-gray-100">
-                <Github className="h-5 w-5" />
-                View All Projects
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="gap-2 border-2 !border-white !bg-transparent !text-white hover:!bg-white hover:!text-blue-600 transition-all"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Get In Touch
-              </Button>
-            </div>
-          </Card>
-        </div>
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-stone-500 dark:text-stone-500 text-sm mb-4">
+            Interested in collaborating?
+          </p>
+          <Button
+            variant="outline"
+            className="border-stone-300 dark:border-neutral-700 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-neutral-800"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Get in touch
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
