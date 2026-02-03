@@ -16,7 +16,7 @@ const SimpleHero = () => {
         <div className="mb-8">
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Kanakaraju
+              Raju
             </span>
             <br />
             <span className="text-gray-700">
@@ -28,7 +28,7 @@ const SimpleHero = () => {
         {/* Tagline */}
         <div className="mb-8">
           <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            MS Computer Science Student & Software Engineer specializing in{" "}
+            Software Engineer specializing in{" "}
             <span className="text-blue-600 font-semibold">Java Microservices</span>,{" "}
             <span className="text-purple-600 font-semibold">Fintech Solutions</span>, and{" "}
             <span className="text-indigo-600 font-semibold">AI/ML Platforms</span>
@@ -38,7 +38,7 @@ const SimpleHero = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-10">
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">5</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">2+</div>
             <div className="text-sm text-gray-600">Years Experience</div>
           </div>
           <div className="text-center">
@@ -46,8 +46,8 @@ const SimpleHero = () => {
             <div className="text-sm text-gray-600">Merchants Served</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">414</div>
-            <div className="text-sm text-gray-600">RPS Performance</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">99.9%</div>
+            <div className="text-sm text-gray-600">System Uptime</div>
           </div>
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">3.82</div>

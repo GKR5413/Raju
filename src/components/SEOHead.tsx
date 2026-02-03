@@ -12,8 +12,8 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = "Raju Gottumukkala | Software Engineer & AI Developer | Kansas City, MO",
-  description = "Raju Gottumukkala (Kanakaraju) - Software Engineer with 5 years experience in fintech solutions and AI platforms. MS Computer Science student at UMKC. Expert in Java, Spring Boot, AWS, Kubernetes. Available for full-time opportunities in Kansas City, Missouri.",
-  keywords = "Raju Gottumukkala, Kanakaraju Gottumukkala, Raju Gottumukkala Software Engineer, Raju Gottumukkala Kansas City, Raju Gottumukkala UMKC, Raju Gottumukkala Java Developer, Raju Gottumukkala AI Developer, Raju Gottumukkala Portfolio, Software Engineer Kansas City, Java Developer Kansas City, AI Developer Kansas City, Spring Boot Expert, Microservices Developer, Fintech Developer, Machine Learning Engineer, Cloud Native Developer, AWS Expert, Kubernetes Developer, UMKC Computer Science, Full Stack Developer, Backend Engineer, API Developer, DevOps Engineer, Software Developer Kansas City, Tech Professional Kansas City, Raju Gottumukkala Contact, Raju Gottumukkala Resume",
+  description = "Raju Gottumukkala - Software Engineer with 2+ years experience building scalable enterprise applications across fintech, consulting, and AI-integrated platforms. MS Computer Science graduate from UMKC. Expert in Java, Spring Boot, React, AWS. Available for full-time opportunities in Kansas City, Missouri.",
+  keywords = "Raju Gottumukkala, Raju Gottumukkala Software Engineer, Raju Gottumukkala Kansas City, Raju Gottumukkala UMKC, Raju Gottumukkala Java Developer, Raju Gottumukkala AI Developer, Raju Gottumukkala Portfolio, Software Engineer Kansas City, Java Developer Kansas City, AI Developer Kansas City, Spring Boot Expert, React Developer, Microservices Developer, Fintech Developer, Cloud Native Developer, AWS Expert, Kubernetes Developer, UMKC Computer Science, Full Stack Developer, Backend Engineer, API Developer, DevOps Engineer, Software Developer Kansas City, Tech Professional Kansas City, Raju Gottumukkala Contact, Raju Gottumukkala Resume",
   canonicalUrl = "https://rajugottumukkala.com",
   ogImage = "https://rajugottumukkala.com/profile-2.jpg",
   ogType = "profile",
@@ -23,12 +23,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Raju Gottumukkala",
-    "alternateName": ["Kanakaraju Gottumukkala", "Kanakaraju", "Raju"],
+    "alternateName": ["Raju G", "RG"],
     "jobTitle": "Software Engineer",
-    "description": "Raju Gottumukkala - Software Engineer with 5 years of experience developing scalable fintech solutions and AI platforms. MS Computer Science student at UMKC specializing in Java, Spring Boot, AWS, and Kubernetes.",
+    "description": "Raju Gottumukkala - Software Engineer with 2+ years of experience building scalable enterprise applications across fintech, consulting, and AI-integrated platforms. MS Computer Science graduate from UMKC specializing in Java, Spring Boot, React, and AWS.",
     "url": "https://rajugottumukkala.com",
     "image": "https://rajugottumukkala.com/profile-2.jpg",
-    "email": "mailto:gottumukkala5413@gmail.com",
+    "email": "mailto:gkr5413@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Kansas City",
@@ -54,9 +54,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       "DevOps"
     ],
     "sameAs": [
-      "https://linkedin.com/in/gkr5413/",
-      "https://github.com/gkr5413",
-      "https://twitter.com/gkr5413"
+      "https://linkedin.com/in/RAJU5413/",
+      "https://github.com/GKR5413",
+      "https://twitter.com/Raju_twt_"
     ]
   };
 

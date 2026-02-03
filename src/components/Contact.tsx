@@ -131,8 +131,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "gottumukkala5413@gmail.com",
-      href: "mailto:gottumukkala5413@gmail.com"
+      value: "gkr5413@gmail.com",
+      href: "mailto:gkr5413@gmail.com"
     },
     {
       icon: Phone,
@@ -158,13 +158,13 @@ const Contact = () => {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      href: "https://linkedin.com/in/gkr5413/",
+      href: "https://linkedin.com/in/RAJU5413/",
       description: "Professional network"
     },
     {
       name: "GitHub",
       icon: Github,
-      href: "https://github.com/gkr5413",
+      href: "https://github.com/GKR5413",
       description: "Code repositories"
     },
     {

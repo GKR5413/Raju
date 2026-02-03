@@ -13,8 +13,8 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = './KANAKARAJU GOTTUMUKKALA.pdf';
-    link.download = 'KANAKARAJU_GOTTUMUKKALA_Resume.pdf';
+    link.href = './Raju.pdf';
+    link.download = 'Raju_Gottumukkala_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -64,7 +64,7 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
           )}
           
           <iframe
-            src="./KANAKARAJU GOTTUMUKKALA.pdf#toolbar=0&navpanes=0&scrollbar=0"
+            src="./Raju.pdf#toolbar=0&navpanes=0&scrollbar=0"
             className="w-full h-[70vh] border-0"
             onLoad={() => setIsLoading(false)}
             title="Resume Preview"

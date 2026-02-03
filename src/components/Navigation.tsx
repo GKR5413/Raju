@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Download, Moon, Sun, Eye, Mail } from "lucide-react";
+import { Menu, X, Moon, Sun, Eye, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCustomTheme } from "@/App";
 import ResumeModal from "./ResumeModal";
@@ -21,7 +21,7 @@ const Navigation = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setScrolled(scrollY > 50);
-      setShouldHide(scrollY > 300); // Hide when floating nav appears
+      setShouldHide(scrollY > 300);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -39,7 +39,7 @@ const Navigation = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    setIsOpen(false); // Close mobile menu
+    setIsOpen(false);
   };
 
   const navItems = [
@@ -52,134 +52,119 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Main Navigation */}
       <nav className={cn(
         "fixed top-0 left-0 right-0 z-[150] transition-all duration-300 ease-out",
-        scrolled ? "bg-white/95 dark:bg-gray-900/95 shadow-sm border-b border-gray-200/20 dark:border-gray-700/20" : "bg-transparent",
-        shouldHide ? "opacity-0 pointer-events-none transform -translate-y-full" : "opacity-100 pointer-events-auto transform translate-y-0"
+        scrolled ? "bg-stone-50/90 dark:bg-neutral-950/90 backdrop-blur-sm border-b border-stone-200/50 dark:border-neutral-800/50" : "bg-transparent",
+        shouldHide ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
       )}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <div className="flex items-center justify-between h-16 w-full">
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200 hover:scale-105"
-              >
-                Raju.
-              </button>
-            </div>
+            <button
+              onClick={() => scrollToSection('home')}
+              className="text-lg font-semibold text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+            >
+              RG
+            </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-center space-x-1">
-                {navItems.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.sectionId)}
-                    className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 relative group hover:bg-gray-100 dark:hover:bg-gray-800/50"
-                  >
-                    {item.name}
-                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-200 rounded-full"></span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Desktop Actions */}
-            <div className="hidden md:flex items-center space-x-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleDarkMode}
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors duration-200"
-              >
-                {mounted && theme === 'dark' ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="gap-2 rounded-lg border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-colors duration-200"
-                onClick={() => setResumeModalOpen(true)}
-              >
-                <Eye className="h-4 w-4" />
-                View Resume
-              </Button>
-              <Button 
-                variant="default" 
-                size="sm" 
-                className="gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-200"
-                onClick={() => window.open('mailto:raju.gottumukkala@gmail.com', '_blank')}
-              >
-                <Mail className="h-4 w-4" />
-                Contact
-              </Button>
-            </div>
-
-            {/* Mobile Actions - Right side */}
-            <div className="md:hidden flex items-center space-x-2">
-              {/* Mobile Theme Toggle */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleDarkMode}
-                className="w-10 h-10 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors duration-200"
-              >
-                {mounted && theme === 'dark' ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </Button>
-              
-              {/* Mobile Menu Button */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-10 h-10 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors duration-200"
-              >
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          <div className={cn(
-            "md:hidden transition-all duration-300 ease-out overflow-hidden w-full",
-            isOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0"
-          )}>
-            <div className="px-2 pt-4 pb-4 space-y-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl mt-2 border border-gray-200/20 dark:border-gray-700/20 shadow-xl mx-2">
+            <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.sectionId)}
-                  className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 w-full text-left border-l-2 border-transparent hover:border-blue-500"
+                  className="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 px-4 py-2 text-sm transition-colors"
                 >
                   {item.name}
                 </button>
               ))}
-              <div className="pt-4 mt-4 border-t border-gray-200/50 dark:border-gray-700/50 space-y-3">
+            </div>
+
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleDarkMode}
+                className="w-9 h-9 rounded-full text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-neutral-800"
+              >
+                {mounted && theme === 'dark' ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                onClick={() => setResumeModalOpen(true)}
+              >
+                Resume
+              </Button>
+              <Button
+                size="sm"
+                className="text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 rounded-full px-4"
+                onClick={() => window.open('mailto:gkr5413@gmail.com', '_blank')}
+              >
+                Contact
+              </Button>
+            </div>
+
+            {/* Mobile Actions */}
+            <div className="md:hidden flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleDarkMode}
+                className="w-9 h-9 rounded-full text-stone-500 dark:text-stone-400"
+              >
+                {mounted && theme === 'dark' ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-9 h-9 rounded-full text-stone-600 dark:text-stone-400"
+              >
+                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div className={cn(
+            "md:hidden transition-all duration-300 ease-out overflow-hidden",
+            isOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0"
+          )}>
+            <div className="py-4 space-y-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.sectionId)}
+                  className="block w-full text-left px-4 py-2 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 text-sm transition-colors"
+                >
+                  {item.name}
+                </button>
+              ))}
+              <div className="pt-4 mt-4 border-t border-stone-200 dark:border-neutral-800 space-y-2 px-4">
                 <Button
                   variant="outline"
-                  size="default"
-                  className="w-full gap-3 rounded-xl border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-colors duration-200 py-3 text-base"
+                  size="sm"
+                  className="w-full justify-center text-sm border-stone-300 dark:border-neutral-700"
                   onClick={() => setResumeModalOpen(true)}
                 >
-                  <Eye className="h-5 w-5" />
                   View Resume
                 </Button>
                 <Button
-                  variant="default"
-                  size="default"
-                  className="w-full gap-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-200 py-3 text-base"
-                  onClick={() => window.open('mailto:raju.gottumukkala@gmail.com', '_blank')}
+                  size="sm"
+                  className="w-full justify-center text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                  onClick={() => window.open('mailto:gkr5413@gmail.com', '_blank')}
                 >
-                  <Mail className="h-5 w-5" />
                   Contact
                 </Button>
               </div>
@@ -188,26 +173,25 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Desktop Theme Toggle - Shows when main nav is hidden */}
+      {/* Floating theme toggle when nav is hidden */}
       <div className={cn(
-        "fixed top-4 right-4 z-[160] transition-all duration-300 ease-out hidden md:block",
-        shouldHide ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        "fixed top-4 right-4 z-[160] transition-all duration-300 hidden md:block",
+        shouldHide ? "opacity-100" : "opacity-0 pointer-events-none"
       )}>
         <Button
           variant="ghost"
-          size="sm"
+          size="icon"
           onClick={toggleDarkMode}
-          className="w-12 h-12 rounded-full bg-white/10 dark:bg-gray-900/10 backdrop-blur-md border border-gray-200/20 dark:border-gray-700/20 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-200 shadow-lg"
+          className="w-10 h-10 rounded-full bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm border border-stone-200 dark:border-neutral-800 text-stone-600 dark:text-stone-400 shadow-sm"
         >
           {mounted && theme === 'dark' ? (
-            <Sun className="h-5 w-5" />
+            <Sun className="h-4 w-4" />
           ) : (
-            <Moon className="h-5 w-5" />
+            <Moon className="h-4 w-4" />
           )}
         </Button>
       </div>
 
-      {/* Resume Modal */}
       <ResumeModal
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}
